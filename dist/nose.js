@@ -14,8 +14,8 @@ class Drawing {
     this.canvas.width = Math.round(width * ratio);
     this.canvas.height = Math.round(height * ratio);
     this.context.setTransform(ratio, 0, 0, ratio, 0, 0);
-    this.context.strokeStyle = '#FF0000';
-    this.context.fillStyle = '#FF0000';
+    this.context.strokeStyle = '#EA4756';
+    this.context.fillStyle = '#EA4756';
     this.context.lineWidth = 5;
     this.context.lineCap = 'round';
     this.context.lineJoin = 'round';

@@ -141,8 +141,8 @@ test('strokes stay red and 5 CSS pixels wide at different sizes and pixel ratios
     a.drawing.resize(800, 600, ratio);
     assert.equal(a.canvas.width, 800 * ratio);
     assert.equal(a.context2d.lineWidth, 5);
-    assert.equal(a.context2d.strokeStyle, '#FF0000');
-    assert.equal(a.context2d.fillStyle, '#FF0000');
+    assert.equal(a.context2d.strokeStyle, '#EA4756');
+    assert.equal(a.context2d.fillStyle, '#EA4756');
     assert.equal(a.context2d.lineCap, 'round');
     assert.equal(a.context2d.lineJoin, 'round');
     assert.deepEqual(a.calls.filter(([name]) => name === 'setTransform').at(-1), ['setTransform', ratio, 0, 0, ratio, 0, 0]);

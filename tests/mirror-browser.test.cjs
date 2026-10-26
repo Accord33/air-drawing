@@ -54,7 +54,7 @@ addEventListener('load', () => {
       check(stageTransform.a * canvasTransform.a === -1, 'canvas mirrored exactly once');
       check(canvas.width === Math.round(stageRect.width * devicePixelRatio), 'canvas pixel density');
       const ctx = canvas.getContext('2d');
-      check(ctx.lineWidth === 5 && ctx.strokeStyle === '#ff0000', 'fixed red 5px stroke');
+      check(ctx.lineWidth === 5 && ctx.strokeStyle === '#ea4756', 'fixed red 5px stroke');
     }
     check(getComputedStyle(document.querySelector('#status')).transform !== getComputedStyle(stage).transform,
       'status stays readable');

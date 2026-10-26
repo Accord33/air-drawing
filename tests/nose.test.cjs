@@ -103,8 +103,8 @@ test('nose landmark 1 draws raw coordinates in a red 5px trace, including fast m
   assert.deepEqual(a.calls.filter(c => c[0] === 'arc')[0].slice(1, 4), [160, 180, 2.5]);
   assert.deepEqual(a.calls.filter(c => c[0] === 'moveTo'), [['moveTo', 160, 180]]);
   assert.deepEqual(a.calls.filter(c => c[0] === 'lineTo'), [['lineTo', 720, 480]]);
-  assert.equal(a.context2d.strokeStyle, '#FF0000');
-  assert.equal(a.context2d.fillStyle, '#FF0000');
+  assert.equal(a.context2d.strokeStyle, '#EA4756');
+  assert.equal(a.context2d.fillStyle, '#EA4756');
   assert.equal(a.context2d.lineWidth, 5);
   assert.equal(a.context2d.lineCap, 'round');
 });

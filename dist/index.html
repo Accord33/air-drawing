@@ -10,9 +10,10 @@
 </head>
 <body>
   <main id="stage" aria-label="Air Drawing カメラと描画">
-    <video id="camera" autoplay muted playsinline aria-label="左右反転しないカメラ映像"></video>
+    <video id="camera" autoplay muted playsinline aria-label="左右反転したカメラ映像"></video>
     <canvas id="drawing" aria-label="人差し指で描いた赤い線"></canvas>
   </main>
+  <nav aria-label="描画モード"><a href="./nose.html">鼻で描く →</a></nav>
   <p id="status" role="status" aria-live="polite">カメラと手の認識を準備しています… カメラを許可してください。</p>
   <script type="module" src="./app.js"></script>
 </body>

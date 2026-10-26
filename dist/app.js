@@ -144,7 +144,12 @@ async function start() {
     return;
   }
   try {
-    stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
+    // Prefer frequent, modest-size frames to reduce capture and inference latency.
+    // Ideals allow cameras with lower frame rates or other sizes to keep working.
+    stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 }, frameRate: { ideal: 60 } },
+      audio: false,
+    });
     if (stopped) { stream.getTracks().forEach(track => track.stop()); return; }
     video.srcObject = stream;
     await video.play();
@@ -165,14 +170,26 @@ async function start() {
     // Only static library/model downloads use the network. No frames or landmarks leave the browser.
     const { FilesetResolver, HandLandmarker } = await import('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.mjs');
     const fileset = await FilesetResolver.forVisionTasks('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm');
-    landmarker = await HandLandmarker.createFromOptions(fileset, {
+    const options = {
       baseOptions: { modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task' },
       runningMode: 'VIDEO',
       numHands: 1,
       minHandDetectionConfidence: 0.5,
       minHandPresenceConfidence: 0.5,
       minTrackingConfidence: 0.5,
-    });
+    };
+    // Accelerate inference when available, retaining CPU support without changing
+    // gesture thresholds or adding smoothing that would delay fast movements.
+    try {
+      landmarker = await HandLandmarker.createFromOptions(fileset, {
+        ...options, baseOptions: { ...options.baseOptions, delegate: 'GPU' },
+      });
+    } catch {
+      if (stopped) return;
+      landmarker = await HandLandmarker.createFromOptions(fileset, {
+        ...options, baseOptions: { ...options.baseOptions, delegate: 'CPU' },
+      });
+    }
     if (stopped) { landmarker.close(); return; }
     status.hidden = true;
     frame = requestAnimationFrame(tick);

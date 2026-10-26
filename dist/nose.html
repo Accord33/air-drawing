@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="鼻先でカメラ映像に赤い線を描く、ブラウザ内だけで動くアプリ。">
+  <title>Air Drawing — 鼻で描く</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main id="stage" aria-label="Air Drawing 鼻のカメラと描画">
+    <video id="camera" autoplay muted playsinline aria-label="左右反転したカメラ映像"></video>
+    <canvas id="drawing" aria-label="鼻先で描いた赤い線"></canvas>
+  </main>
+  <nav aria-label="描画モード"><a href="./index.html">← 指で描く</a></nav>
+  <p id="status" role="status" aria-live="polite">カメラと顔の認識を準備しています… カメラを許可してください。</p>
+  <script type="module" src="./nose.js"></script>
+</body>
+</html>

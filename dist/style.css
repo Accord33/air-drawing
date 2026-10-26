@@ -2,7 +2,7 @@
 * { box-sizing: border-box; }
 html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
 body { display: grid; place-items: center; }
-#stage { position: relative; width: 100%; height: 100%; }
+#stage { position: relative; width: 100%; height: 100%; transform: scaleX(-1); }
 video, canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 video { object-fit: contain; }
 canvas { pointer-events: none; }
@@ -10,3 +10,7 @@ canvas { pointer-events: none; }
   width: max-content; max-width: calc(100% - 2rem); padding: .8rem 1rem; border-radius: .4rem;
   color: #fff; background: #181818ed; font-size: .95rem; line-height: 1.6; text-align: center; }
 [hidden] { display: none !important; }
+nav { position: fixed; bottom: 1rem; left: 1rem; z-index: 1; }
+nav a { display: block; padding: .65rem 1rem; border-radius: .4rem;
+  color: #fff; background: #181818ed; text-decoration: underline; }
+nav a:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
